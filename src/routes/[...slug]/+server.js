@@ -1,10 +1,9 @@
 import { TMDB_BASE_URL, TMDB_READ_ACCESS_KEY } from "$env/static/private";
 
 export async function GET({ url }) {
-  const pathname = url.pathname;
+  const pathname = url.href.replace(url.origin, "");
 
   const apiUrl = TMDB_BASE_URL + pathname;
-  console.log(apiUrl);
   const response = await fetch(apiUrl, {
     headers: {
       Authorization: `Bearer ${TMDB_READ_ACCESS_KEY}`,
